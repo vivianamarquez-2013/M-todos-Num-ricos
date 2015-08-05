@@ -1,0 +1,524 @@
+# Numerical Analysis - Ninth Edition
+# Problem Set 1.2
+# 1, 2, 5, 10, 15
+# The code was written in ipyhton notebook
+
+
+# coding: utf-8
+
+# <img src="http://orientacion.universia.net.co/imgs2011/imagenes/logo-header-konradlorenz.png">
+# #Métodos Numéricos
+# ###Taller: 1, 2, 5, 10, 15
+# <b>Nombre:</b> Viviana Márquez<br>
+# <b>Código:</b> 614132005<br>
+# <b>Profesor:</b> Alberto Forero<br>
+# <b>Fecha:</b> Miércoles, 05 de agosto de 2015<br>
+# <hr>
+
+# In[1]:
+
+import numpy as np
+
+
+# In[2]:
+
+import math
+
+
+# <hr>
+
+# ###1. Compute the absolute error and relative error in approximations of p by p∗. 
+
+# <b>a.</b> p = $\pi$, $p\ast = \frac{22}{7}$<br>
+# <b>b.</b> p = $\pi$, $p\ast = 3.1416$<br>
+# <b>c.</b> p = $e$, $p\ast = 2.718$<br>
+# <b>d.</b> p = $\sqrt{2}$, $p\ast = 1.414$<br>
+# <b>e.</b> p = $e^{10}$, $p\ast = 22000$<br>
+# <b>f.</b> p = $10^{\pi}$, $p\ast = 1400$<br>
+# <b>g.</b> p = $8!$, $p\ast = 39900$<br>
+# <b>h.</b> p = $9!$, $p\ast = \sqrt{18\pi}\big(\frac{9}{e}\big)^{9}$<br>
+
+# In[3]:
+
+p = [np.pi, np.pi, np.e, np.sqrt(2), np.e**10, 10**np.pi, math.factorial(8), math.factorial(9)]
+
+
+# In[4]:
+
+pp = [22.0/7.0, 3.1416, 2.718, 1.414, 22000.0, 1400.0, 39900.0, ((np.sqrt(18*np.pi))*((9/np.e)**9))]
+
+
+# <b>Absolute Error</b><br>
+# $\mathrm{E_{t}} = \left | p - p\ast \right |$
+
+# In[5]:
+
+ae = [np.abs(x-y) for x,y in zip(p,pp)]
+ae
+
+
+# <b>Relative Error</b><br>
+# $\mathrm{\varepsilon_{t}} = \frac{\left | p - p\ast \right |}{\left | p \right |}$
+
+# In[6]:
+
+re = [((np.abs(x-y))/(np.abs(x))) for x,y in zip(p,pp)]
+re
+
+
+# <center><big><b>Table of Results</b></big></center>
+# <table align="center">
+#     <tr>
+#         <td align="center"><center></center></td>
+#         <td align="center"><center>$\mathbf{p}$</center></td>
+#         <td align="center"><center>$\mathbf{p\ast}$</center></td>
+#         <td align="center"><center>$\mathbf{\mathrm{E_{t}}}$</center></td>
+#         <td align="center"><center>$\mathbf{\mathrm{\varepsilon_{t}}}$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>a.</b></center></td>
+#         <td align="center"><center>$\pi$</center></td>
+#         <td align="center"><center>$\frac{22}{7}$</center></td>
+#         <td align="center"><center>0.0012644892673496777</center></td>
+#         <td align="center"><center>0.00040249943477070079</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>b.</b></center></td>
+#         <td align="center"><center>$\pi$</center></td>
+#         <td align="center"><center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$3.1416$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></td>
+#         <td align="center"><center>7.3464102068321324e-06</center></td>
+#         <td align="center"><center>2.3384349967961744e-06</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>c.</b></center></td>
+#         <td align="center"><center>$e$</center></td>
+#         <td align="center"><center>$2.718$</center></td>
+#         <td align="center"><center>0.00028182845904511922</center></td>
+#         <td align="center"><center>0.00010367889601972718</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>d.</b></center></td>
+#         <td align="center"><center>$\sqrt{2}$</center></td>
+#         <td align="center"><center>$1.414$</center></td>
+#         <td align="center"><center>0.00021356237309522186</center></td>
+#         <td align="center"><center>0.00015101140222192286</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>e.</b></center></td>
+#         <td align="center"><center>$e^{10}$</center></td>
+#         <td align="center"><center>$22000$</center></td>
+#         <td align="center"><center>26.465794806703343</center></td>
+#         <td align="center"><center>0.0012015452253326688</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>f.</b></center></td>
+#         <td align="center"><center>$10^{\pi}$</center></td>
+#         <td align="center"><center>$1400$</center></td>
+#         <td align="center"><center>14.544268632989315</center></td>
+#         <td align="center"><center>0.010497822704619136</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>g.</b></center></td>
+#         <td align="center"><center>$8!$</center></td>
+#         <td align="center"><center>$39900$</center></td>
+#         <td align="center"><center>420</center></td>
+#         <td align="center"><center>0.010416666666666666</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>h.</b></center></td>
+#         <td align="center"><center>$9!$</center></td>
+#         <td align="center"><center>$\sqrt{18\pi}\big(\frac{9}{e}\big)^{9}$</center></td>
+#         <td align="center"><center>3343.1271580516477</center></td>
+#         <td align="center"><center>0.009212762230080598</center></td>
+#     </tr>
+# </table> 
+
+# <hr>
+
+# ###2. Find the largest interval in which p∗ must lie to approximate p with relative error at most 10−4 for each value of p*.
+
+# <b>a.</b> $\pi$<br>
+# <b>b.</b> $e$<br>
+# <b>c.</b> $\sqrt{2}$<br>
+# <b>d.</b> $\sqrt[3]{7}$<br>
+
+# In[7]:
+
+p = [np.pi, np.e, np.sqrt(2), np.power(7,1.0/3)]
+
+
+# ###Solution
+# 
+# <br>We have,<br><br>
+# $\frac{\left | p - p\ast \right |}{\left | p \right |}\leq 10^{-4}$
+# <br><br>Therefore,<br><br>
+# ${\left |p - p\ast \right |}\leq 10^{-4}\cdot{\left | p \right |}$<br>
+# $-10^{-4}\cdot{\left | p \right |}\leq {p - p\ast}\leq 10^{-4}\cdot{\left | p \right |}$<br>
+# $-10^{-4}\cdot{\left | p \right |}-p\leq {- p\ast}\leq 10^{-4}\cdot{\left | p \right |}-p$<br>
+# $10^{-4}\cdot{\left | p \right |}-p\leq {p\ast}\leq -10^{-4}\cdot{\left | p \right |}-p$<br>
+# 
+
+# In[8]:
+
+ppl = [(((10**-4)*(np.abs(x)))-x) for x in (p)]
+ppl
+
+
+# In[9]:
+
+ppr = [(-1*(((10**-4)*(np.abs(x)))-x)) for x in (p)]
+ppr
+
+
+# <center><big><b>Table of Results</b></big></center>
+# <table align="center">
+#     <tr>
+#         <td align="center"><center></center></td>
+#         <td align="center"><center>$\mathbf{p}$</center></td>
+#         <td align="center"><center>$10^{-4}\cdot{\left | p \right |}-p\leq$</center></td>
+#         <td align="center"><center>${p\ast}$</center></td>
+#         <td align="center"><center>$\leq-10^{-4}\cdot{\left | p \right |}-p$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>a.</b></center></td>
+#         <td align="center"><center>$\pi$</center></td>
+#         <td align="center"><center>$-3.1412784943244341$</center></td>
+#         <td align="center"><center>$p\ast$</center></td>
+#         <td align="center"><center>$3.1412784943244341$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>b.</b></center></td>
+#         <td align="center"><center>$e$</center></td>
+#         <td align="center"><center>$-2.7180100002761991$</center></td>
+#         <td align="center"><center>$p*$</center></td>
+#         <td align="center"><center>$2.7180100002761991$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>c.</b></center></td>
+#         <td align="center"><center>$\sqrt{2}$</center></td>
+#         <td align="center"><center>$-1.4140721410168577$</center></td>
+#         <td align="center"><center>$p\ast$</center></td>
+#         <td align="center"><center>$1.4140721410168577$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>d.</b></center></td>
+#         <td align="center"><center>$\sqrt[3]{7}$</center></td>
+#         <td align="center"><center>$-1.9127398896541117$</center></td>
+#         <td align="center"><center>$p\ast$</center></td>
+#         <td align="center"><center>$1.9127398896541117$</center></td>
+#     </tr>
+# </table> 
+
+# <hr>
+
+# ###5. Use three-digit rounding arithmetic to perform the following calculations. Compute the absolute error and relative error with the exact value determined to at least five digits.
+
+# <b>a.</b> $133+0.921$<br>
+# <b>b.</b> $133-0.499$<br>
+# <b>c.</b> $(121−0.327)−119$<br>
+# <b>d.</b> $(121 − 119) − 0.327$<br>
+# <b>e.</b> $\frac{{}\frac{13}{14}-\frac{6}{7}}{2e-5.4}$<br>
+# <b>f.</b> $-10\pi + 6e - \frac{3}{62}$<br>
+# <b>g.</b> $\left(\frac{2}{9} \right )\cdot\left ( \frac{9}{7} \right )$<br>
+# <b>h.</b> $\frac{\pi-\frac{22}{7}}{\frac{1}{17}}$<br>
+
+# Three-digit rounding arithmetic answers:<br>
+# <b>a.</b> $133+0.921 = 134$<br>
+# <b>b.</b> $133-0.499 = 133$<br>
+# <b>c.</b> $(121−0.327)−119 = 121 - 119 = 2.00$<br>
+# <b>d.</b> $(121 − 119) − 0.327 = 2.00 - 0.327 = 1.67$<br>
+# <b>e.</b> $\frac{{}\frac{13}{14}-\frac{6}{7}}{2e-5.4} = \frac{0.929 - 0.857}{(2*2.72)-5.4} = 1.80$<br>
+# <b>f.</b> $-10\pi + 6e - \frac{3}{62} = -31.4 + 16.3 - 0.048 = -15.1$<br>
+# <b>g.</b> $\left(\frac{2}{9} \right )\cdot\left ( \frac{9}{7} \right ) = 0.222 \cdot 1.29 = 0.286$<br>
+# <b>h.</b> $\frac{\pi-\frac{22}{7}}{\frac{1}{17}} = \frac{3.14-3.14}{0.059} = 0.00$<br>
+
+# In[10]:
+
+p = [133+0.921,133-0.499,round(((121-0.327)-119),5),(121-119)-0.327,((13.0/14)-(6.0/7))/((2*np.e)-5.4),(-10*np.pi)+(6*np.e)-(3.0/62),(2.0/9)*(9.0/7),(np.pi-(22.0/7))/(1.0/17)]
+
+
+# In[11]:
+
+pp = [134.0, 133.0, 2.00, 1.67, 1.80, -15.1, 0.286, 0.00]
+
+
+# <b>Absolute Error</b><br>
+# $\mathrm{E_{t}} = \left | p - p\ast \right |$
+
+# In[12]:
+
+ae = [np.abs(x-y) for x,y in zip(p,pp)]
+ae
+
+
+# <b>Relative Error</b><br>
+# $\mathrm{\varepsilon_{t}} = \frac{\left | p - p\ast \right |}{\left | p \right |}$
+
+# In[13]:
+
+re = [((np.abs(x-y))/(np.abs(x))) for x,y in zip(p,pp)]
+re
+
+
+# <center><big><b>Table of Results</b></big></center>
+# <table align="center">
+#     <tr>
+#         <td align="center"><center></center></td>
+#         <td align="center"><center>Approximation</center></td>
+#         <td align="center"><center>Absolute Error</center></td>
+#         <td align="center"><center>Relative Error</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>a.</b></center></td>
+#         <td align="center"><center>134</center></td>
+#         <td align="center"><center>0.07900</center></td>
+#         <td align="center"><center>0.00059</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>b.</b></center></td>
+#         <td align="center"><center>133</center></td>
+#         <td align="center"><center>0.4989(10)</center></td>
+#         <td align="center"><center>0.00377</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>c.</b></center></td>
+#         <td align="center"><center>2.00</center></td>
+#         <td align="center"><center>0.3269(10)</center></td>
+#         <td align="center"><center>0.19546</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>d.</b></center></td>
+#         <td align="center"><center>1.67</center></td>
+#         <td align="center"><center>0.00300</center></td>
+#         <td align="center"><center>0.00179</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>e.</b></center></td>
+#         <td align="center"><center>1.80</center></td>
+#         <td align="center"><center>0.15354</center></td>
+#         <td align="center"><center>0.0785(10)</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>f.</b></center></td>
+#         <td align="center"><center>-15.1</center></td>
+#         <td align="center"><center>0.05462</center></td>
+#         <td align="center"><center>0.00360</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>g.</b></center></td>
+#         <td align="center"><center>0.286</center></td>
+#         <td align="center"><center>0.00029</center></td>
+#         <td align="center"><center>0.0009(10)</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>h.</b></center></td>
+#         <td align="center"><center>0.00</center></td>
+#         <td align="center"><center>0.0214(10)</center></td>
+#         <td align="center"><center>1.0000</center></td>
+#     </tr>
+# </table> 
+
+# <hr>
+
+# ###10. The number $e$ can be defined by $\sum_{n=0}^{\infty}\left ( \frac{1}{n!} \right )$, where $n! = n(n-1) \cdot\cdot \cdot 2 \cdot 1$ for $n \neq 0$ and $0! = 1$. Compute the absolute error and relative error in the following approximations of $e$:
+
+# <b>a.</b> $\sum_{n=0}^{5}\left ( \frac{1}{n!} \right )$<br>
+# <b>b.</b> $\sum_{n=0}^{10}\left ( \frac{1}{n!} \right )$<br>
+
+# In[14]:
+
+from sympy.abc import n
+from sympy import Sum, factorial, oo
+
+
+# In[15]:
+
+Sum(1/factorial(n),(n,0,oo)).doit()
+
+
+# In[16]:
+
+Sum(1/factorial(n),(n,0,5)).doit()
+
+
+# In[17]:
+
+163.0/60
+
+
+# In[18]:
+
+Sum(1/factorial(n),(n,0,10)).doit()
+
+
+# In[19]:
+
+9864101.0/3628800
+
+
+# In[20]:
+
+pp = [163.0/60, 9864101.0/3628800]
+
+
+# <b>Absolute Error</b><br>
+# $\mathrm{E_{t}} = \left | p - p\ast \right |$
+
+# In[21]:
+
+ae = [np.abs(np.e-x) for x in pp]
+ae
+
+
+# <b>Relative Error</b><br>
+# $\mathrm{\varepsilon_{t}} = \frac{\left | p - p\ast \right |}{\left | p \right |}$
+
+# In[22]:
+
+re = [((np.abs(np.e-x))/(np.abs(np.e))) for x in pp]
+re
+
+
+# <center><big><b>Table of Results</b></big></center>
+# <table align="center">
+#     <tr>
+#         <td align="center"><center></center></td>
+#         <td align="center"><center>Approximation</center></td>
+#         <td align="center"><center>Absolute Error</center></td>
+#         <td align="center"><center>Relative Error</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>a.</b></center></td>
+#         <td align="center"><center>$2.716666666666667$</center></td>
+#         <td align="center"><center>$0.0016151617923783057$</center></td>
+#         <td align="center"><center>$0.00059418481758159627$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>b.</b></center></td>
+#         <td align="center"><center>$2.7182818011463845$</center></td>
+#         <td align="center"><center>$2.731\cdot10^{-8}$</center></td>
+#         <td align="center"><center>$1.005\cdot10^{-8}$</center></td>
+#     </tr>
+# </table> 
+
+# <hr>
+
+# ###15. Use the 64-bit long real format to find the decimal equivalent of the following floating-point machine numbers.
+
+# <b>a.</b> 0 10000001010 1001001100000000000000000000000000000000000000000000<br>
+# <b>b.</b> 1 10000001010 1001001100000000000000000000000000000000000000000000<br>
+# <b>c.</b> 0 01111111111 0101001100000000000000000000000000000000000000000000<br>
+# <b>d.</b> 0 01111111111 0101001100000000000000000000000000000000000000000001<br>
+
+# ###Solution:
+# Machine number:<br>
+# $\underbrace{0}_{\text{s}} \ \underbrace{10000001010}_{\text{c}} \ \underbrace{1001001100000000000000000000000000000000000000000000}_{\text{f}}$<br><br>
+# Decimal number is of the form:<br>
+# $(-1)^{s}2^{c-1023}(1+f)$
+# 
+
+# In[23]:
+
+s= [0,1,0,0]
+
+
+# In[24]:
+
+c= [10000001010,10000001010, 1111111111, 1111111111]
+
+
+# In[25]:
+
+ff= [1001001100000000000000000000000000000000000000000000,1001001100000000000000000000000000000000000000000000,str("0101001100000000000000000000000000000000000000000000"),str("0101001100000000000000000000000000000000000000000001")]
+
+
+# In[26]:
+
+#Method to convert from binary to decimal
+
+def btod (x):
+    ans = 0
+    for i in range (0,len(str(x))):
+        #print ans,"+ 2^",i,"*",str(x)[len(str(x))-i-1]
+        ans = ans + ((2**i) * (int(str(x)[len(str(x))-i-1])))
+    return ans
+
+
+# In[27]:
+
+cb = []
+
+for i in c:
+    cb.append(2**(btod(i)-1023))
+
+cb
+
+
+# In[28]:
+
+#Method for f
+
+def fun (x):
+    ans = 0
+    for i in range (0,len(str(x))):
+            ans = ans + ((int(str(x)[i])) * ((1.0/2)**(i+1)))
+    return ans
+
+
+# In[29]:
+
+fb = []
+
+fb.append(fun(ff[0]))
+fb.append(fun(ff[1]))
+fb.append(fun(ff[2]))
+fb.append(fun(ff[3]))
+
+fb
+
+
+# In[30]:
+
+#Method for the final function
+
+def funct (x,y,z):
+    ans = ((-1)**x)*((y)*(1+z))
+    return ans
+
+
+# In[31]:
+
+ansf = [funct(x,y,z) for x,y,z in zip(s,cb,fb)]
+ansf
+
+
+# <center><big><b>Table of Results</b></big></center>
+# <table align="center">
+#     <tr>
+#         <td align="center"><center></center></td>
+#         <td align="center"><center>Machine Number</center></td>
+#         <td align="center"><center>Decimal Number</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>a.</b></center></td>
+#         <td align="center"><center>&nbsp;&nbsp;&nbsp;0 10000001010 1001001100000000000000000000000000000000000000000000&nbsp;&nbsp;&nbsp;</center></td>
+#         <td align="center"><center>$3224$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>b.</b></center></td>
+#         <td align="center"><center>1 10000001010 1001001100000000000000000000000000000000000000000000</center></td>
+#         <td align="center"><center>$-3224$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>c.</b></center></td>
+#         <td align="center"><center>0 01111111111 0101001100000000000000000000000000000000000000000000</center></td>
+#         <td align="center"><center>$1.32421875$</center></td>
+#     </tr>
+#     <tr>
+#         <td align="center"><center><b>d.</b></center></td>
+#         <td align="center"><center>0 01111111111 0101001100000000000000000000000000000000000000000001</center></td>
+#         <td align="center"><center>$1.3242187500000002$</center></td>
+#     </tr>
+# </table> 
+
+# <hr>
