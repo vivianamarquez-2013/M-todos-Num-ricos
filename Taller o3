@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+ \usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{etoolbox}
+\usepackage{multicol}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+%If you want to title your bold things something different just make another thing exactly like this but replace "problem" with the name of the thing you want, like theorem or lemma or whatever
+ 
+\begin{document}
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+%Good resources for looking up how to do stuff:
+%Binary operators: http://www.access2science.com/latex/Binary.html
+%General help: http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%Or just google stuff
+ 
+\title{Homework template}
+\author{Author}
+\maketitle
+ 
+\begin{problem}{14}
+Use Theorem 2.1 to find a bound for the number of iterations needed to achieve an approximation with accuracy $10^{-3}$ to the solution of $x^{3} + x - 4 = 0$ lying in the interval $[1, 4]$. Find an approximation to the root with this degree of accuracy.
+\end{problem}
+
+\providetoggle{solution}
+\begin{multicols}{2}
+$\\$
+$$\left | p_{n} - p \right | \leq \dfrac{\left |b-a\right |}{2^{n}}\\$$
+$\\$
+$$\left | 10^{-3} \right | > \dfrac{\left |4-1\right |}{2^{n}}\\$$
+$\\$
+$$10^{-3} >\dfrac{3}{2^{n}}\\$$
+$\\$
+$$\dfrac{2^{n}}{3}>\dfrac{1}{10^{-3}}\\$$
+$\\$
+$$2^{n}> 3\cdot 10^{3} \\$$
+$\\$
+$$n> \log_{2}3\cdot 10^{3}\\$$
+$\\$
+$$n> \dfrac{\log 3\cdot 10^{3}}{\log 2}\\$$
+$\\$
+$$n> 11.55\\$$
+$\\$
+$$\therefore$$
+$\\$
+$$n \geq 12\\$$
+\end{multicols}
+\togglefalse{solution}
+
+\end{document}
